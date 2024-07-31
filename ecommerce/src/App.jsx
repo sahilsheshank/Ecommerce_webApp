@@ -19,6 +19,19 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './Firebase/Firebase-auth';
 import SingleProduct from './pages/singleProduct/SingleProduct';
 function App() {
+
+ 
+
+
+
+
+
+
+
+
+
+
+
   
   const[cart,setCart]=useState([]);
   const[userName,setUserName]=useState('');

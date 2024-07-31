@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 function Layout({children ,userName}) {
   return (
     <>
-        <Header userName={userName}/>
+        <Header userName={userName} />
             {children}
         <Footer/>
     </>

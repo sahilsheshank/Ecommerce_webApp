@@ -6,10 +6,11 @@ import { useEffect, useState } from 'react'
 function AllProducts({ addToCart }) {
   const [productCategory, setProductCategory] = useState([])
   const [originalProducts, setOriginalProducts] = useState([])
-  const [priceRange,setPriceRange]=useState(100)
+  const [priceRange, setPriceRange] = useState(100)
   const [allProducts, setAllProducts] = useState([]);
   const [searchedProduct, setSearchedProduct] = useState('');
 
+  console.log(allProducts)
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios('https://dummyjson.com/products/categories')
@@ -39,15 +40,15 @@ function AllProducts({ addToCart }) {
 
 
   const handleSearch = () => {
-       const query = originalProducts.filter((item) => (item.title.toLowerCase().includes(searchedProduct.toLowerCase())))
+    const query = originalProducts.filter((item) => (item.title.toLowerCase().includes(searchedProduct.toLowerCase())))
     setAllProducts(query);
   }
 
 
-  const rangeCalc=(range)=>{
-      setPriceRange(range);
-      const filteredPrice=originalProducts.filter((item)=>(item.price<=range))
-      setAllProducts(filteredPrice)
+  const rangeCalc = (range) => {
+    setPriceRange(range);
+    const filteredPrice = originalProducts.filter((item) => (item.price <= range))
+    setAllProducts(filteredPrice)
   }
 
 
@@ -58,12 +59,12 @@ function AllProducts({ addToCart }) {
     <Layout>
       <div className='h-full'>
         <div className='w-full flex justify-center flex-col items-center'>
-          <select onChange={(e) => filterProducts(e.target.value)} className='my-4 '>
-
-            {productCategory.slice(0, 6).map((category, index) => (
-              <option value={category} key={index} className=' bg-red-500 text-white cursor-pointer   m-2 border-solid'>{category}</option>
+          <select onChange={(e) => filterProducts(e.target.value)} className='my-4 p-2 border border-solid border-gray-300 rounded'>
+            {productCategory.map((category, index) => (
+              <option value={category.slug} key={index} className='bg-red-500 text-white cursor-pointer p-2'>
+                {category.name}
+              </option>
             ))}
-
           </select>
           <h1>HERE ARE THE PRODUCTS</h1>
           <div className='flex gap-2 m-4 '>
@@ -72,7 +73,7 @@ function AllProducts({ addToCart }) {
           </div>
           <span>Select The Price Range</span>
           <div className='flex m-4'>
-          <input type="range" min={100} step={20} max={2000} onChange={(e)=>(rangeCalc(e.target.value))} className='w-70'/><span className='mx-4 px-2 border-2 rounder-lg'>{priceRange}</span>
+            <input type="range" min={5} step={4} max={100} onChange={(e) => (rangeCalc(e.target.value))} className='w-70' /><span className='mx-4 px-2 border-2 rounder-lg'>{priceRange}</span>
           </div>
 
         </div>
@@ -85,11 +86,11 @@ function AllProducts({ addToCart }) {
             <div className='flex flex-wrap justify-center gap-4'>
               {allProducts.map((item) => (
                 <div key={item.id} className="lg:w-1/4 md:w-1/2 p-4 w-full border-2 m-4 rounded-lg">
-                  
-                    <Link className="block relative h-48 rounded overflow-hidden" to={`/singleProduct/${item.id}`}>
-                    <img  alt="ecommerce" className="object-cover object-center w-full h-full block" src={item.thumbnail} />
-                    </Link>
-                  
+
+                  <Link className="block relative h-48 rounded overflow-hidden" to={`/singleProduct/${item.id}`}>
+                    <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={item.thumbnail} />
+                  </Link>
+
                   <div className="mt-4">
                     <h3 className="text-gray-700 text-xs tracking-widest title-font mb-1">{item.title}</h3>
                     <h2 className="text-gray-500 title-font text-sm font-medium">{item.description}</h2>
