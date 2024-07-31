@@ -1,6 +1,6 @@
 # React + Vite
 
-## [live link](ecommerce-web-app-git-main-sahil-sheshank-s-projects.vercel.app)
+## [live link](https://ecommerce-web-app-git-main-sahil-sheshank-s-projects.vercel.app/)
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
