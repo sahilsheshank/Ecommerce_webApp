@@ -13,6 +13,7 @@ function Home({userName}) {
           <div className=''>
             <img src="cover.png" alt="image" className='  top- w-full object-cover object-center h-[100vh]  ' />
           </div>
+
           <div className='absolute top-[40%] left-[12%]'>
             <h1 className='text-6xl font-bold text-black'>Welcome <span className='text-white font-bold'>{userName}</span>, Let's fill your shopping bag </h1>
             <h2 className='text-2xl font-bold text-gray-700 '></h2>
